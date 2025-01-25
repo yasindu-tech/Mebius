@@ -4,7 +4,7 @@ import Navabar from "./Navbar";
 function App() {
   return (
     <div>
-      <Navabar count={100} name="Yasindu" />
+      <Navabar/>
       <Hero />
     </div>
   );

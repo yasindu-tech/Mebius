@@ -1,7 +1,9 @@
 import cart from './assets/cart.svg';
 import './Navbar.css';
 
-export default function Navbar(props) {
+export default function Navbar() {
+    const name = "Yasindu";
+    const count = 100;
     return (
         <>
             <div className="navbar">
@@ -22,10 +24,10 @@ export default function Navbar(props) {
 
            
                 <div className="right-section">
-                    <p className="count">{props.count}</p>
+                    <p className="count">{count}</p>
                     <img src={cart} alt="Cart Icon" />
                     <h5>Cart</h5>
-                    <h5>Hi, {props.name}</h5>
+                    <h5>Hi, {name}</h5>
                 </div>
             </div>
         </>
