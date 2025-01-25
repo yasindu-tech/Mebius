@@ -1,35 +1,37 @@
-import cart from './assets/cart.svg';
-import './Navbar.css';
+import cart  from './assets/cart.svg'
 
-export default function Navbar() {
-    const name = "Yasindu";
-    const count = 100;
+export default function Navabr(props){
     return (
-        <>
-            <div className="navbar">
-    
-                <div className="left-section">
-                    <a href="#" className="logo">
-                        <h1>Mebius</h1>
-                    </a>
-                    <div className="links">
-                        <a href="#">
-                            <h5>Home</h5>
-                        </a>
-                        <a href="#">
-                            <h5>Shop</h5>
-                        </a>
-                    </div>
-                </div>
-
-           
-                <div className="right-section">
-                    <p className="count">{count}</p>
-                    <img src={cart} alt="Cart Icon" />
-                    <h5>Cart</h5>
-                    <h5>Hi, {name}</h5>
-                </div>
+        <nav className="flex items-center justify-between p-8 mx-16">
+          <div className="flex gap-x-16">
+            <a className="font-semibold text-3xl" href="/">
+              Mebius
+            </a>
+            <div className="flex items-center gap-4">
+              <a href="/">Home</a>
+              <a href="/shop">Shop</a>
             </div>
-        </>
-    );
+          </div>
+          <div className="flex items-center gap-4">
+            <div>
+              <a href="/cart" className="flex items-center gap-4 relative">
+                <p className="text-lg">{props.count}</p>
+                <div className="flex items-center gap-2">
+                    <img src={cart} alt="cart" className="w-6 h-6"/>
+                  Cart
+                </div>
+              </a>
+            </div>
+            {props.name === undefined ? (
+                <div>
+                    <a href="/login">Login</a>
+                    <a href="/signup" className='pl-3'>Signup</a>
+                </div>
+              ) : (<p>Hi, {props.name}</p>)}
+            
+          </div>
+        </nav>
+      );
 }
+
+
