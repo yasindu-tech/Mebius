@@ -1,0 +1,61 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0px 30px;
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+   
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.links {
+    display: flex;
+    gap: 15px;
+}
+
+.links a h5 {
+    font-size: 16px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.count {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.right-section img {
+    width: 24px;
+    height: 24px;
+}
+
+.right-section h5 {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+}
