@@ -38,7 +38,7 @@ function App() {
         <Button variant="destructive">Buy Now</Button>
       </div>
 
-      <div className="p-4">
+      <div className="p-4 align-center">
         <h2>Alert Dialog</h2>
         <AlertDialog>
           <AlertDialogTrigger>
