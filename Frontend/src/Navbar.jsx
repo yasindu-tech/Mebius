@@ -24,7 +24,7 @@ export default function Navabr(props){
             </div>
             {props.name === undefined ? (
                 <div>
-                    <a href="/login">Login</a>
+                    <a href="/signin">Login</a>
                     <a href="/signup" className='pl-3'>Signup</a>
                 </div>
               ) : (<p>Hi, {props.name}</p>)}

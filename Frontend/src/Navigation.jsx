@@ -22,7 +22,17 @@ function Navigation(props) {
             </div>
           </a>
         </div>
-        <p>Hi, {props.name}</p>
+
+        {props.name === undefined ? (
+          <div>
+            <a href="/signin">Sign in</a>
+            <a href="/signup" className="pl-3">
+              Sign up
+            </a>
+          </div>
+        ) : (
+          <p>Hi, {props.name}</p>
+        )}
       </div>
     </nav>
   );

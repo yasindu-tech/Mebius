@@ -1,5 +1,5 @@
 import express from 'express';
-import { getProducts,createProduct,getProductById,deleteProduct,updateProduct } from '../Applications/product.js';
+import { getProducts,createProduct,getProductById,deleteProduct,updateProduct } from '../application/product.js';
 
 
 
