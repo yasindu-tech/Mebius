@@ -1,9 +1,11 @@
 {
+  "type": "module",
+  
   "dependencies": {
     "express": "^4.21.2",
     "nodemon": "^3.1.9"
   },
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon src/app.js"
   }
 }
