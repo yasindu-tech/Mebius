@@ -1,60 +1,51 @@
 import NotFoundError from "../domain/errors/not-found-error.js";
-const categories = [
-  { _id: "ALL", name: "All" },
-  { _id: "1", name: "Headphones" },
-  { _id: "2", name: "Earbuds" },
-  { _id: "3", name: "Speakers" },
-  { _id: "4", name: "Mobile Phones" },
-  { _id: "5", name: "Smart Watches" },
-];
+import Category from "../infastructure/schemas/Category.js";
 
-export const getCategories = (req, res, next) => {
+export const getCategories = async (req, res, next) => {
   try {
-    res.status(200).json(categories);
+    const data = await Category.find();
+    res.status(200).json(data).send();
   } catch (error) {
     next(error);
   }
 };
 
-export const createCategory = (req, res, next) => {
+export const createCategory = async (req, res, next) => {
   try {
     const newCategory = req.body;
-    categories.push(newCategory);
+    await Category.create(newCategory);
     res.status(201).send();
   } catch (error) {
     next(error);
   }
 };
 
-export const deleteCategory = (req, res, next) => {
+export const deleteCategory = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const index = categories.findIndex((category) => category._id === id);
-    if (index > -1) {
-      categories.pop(index);
-      res.status(200).send();
-    } else {
+    const categories = await Category.findByIdAndDelete(id);
+
+    if (!categories) {
       throw new NotFoundError("Category not found");
     }
+
+    return res.status(204).send();
   } catch (error) {
     next(error);
   }
 };
 
-export const updateCategory = (req, res, next) => {
+export const updateCategory = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const index = categories.findIndex((category) => category._id === id);
+    const categories = await Category.findByIdAndUpdate(id, req.body);
 
-    if (index > -1) {
-      categories[index] = {
-        ...categories[index],
-        ...req.body,
-      };
-      res.status(200).send();
-    } else {
+    if (!categories) {
       throw new NotFoundError("Category not found");
     }
+    
+    res.status(200).send();
+    
   } catch (error) {
     next(error);
   }

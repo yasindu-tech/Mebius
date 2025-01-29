@@ -1,4 +1,5 @@
 import NotFoundError from "../domain/errors/not-found-error.js";
+import Product from "../infastructure/schemas/Product.js";
 
 const products = [
   {
@@ -75,27 +76,34 @@ const products = [
   },
 ];
 
-export const getProducts = (req, res, next) => {
+export const getProducts = async (req, res, next) => {
   try {
-    res.status(200).json(products).send();
+    const {categoryID} = req.query;
+    if(!categoryID) {
+      const data = await Product.find();
+      res.status(200).json(data).send();
+    } else {
+      const data = await Product.find({categoryID});
+      res.status(200).json(data).send();
+    } 
   } catch (error) {
     next(error);
   }
 };
-export const createProduct = (req, res, next) => {
+export const createProduct = async (req, res, next) => {
   try {
     const newProduct = req.body;
-    products.push(newProduct);
+    await Product.create(newProduct);
     res.status(201).send();
   } catch (error) {
     next(error);
   }
 };
 
-export const getProductById = (req, res, next) => {
+export const getProductById =async (req, res, next) => {
   try {
     const id = req.params.id;
-    const product = products.find((product) => product.id === id);
+    const product = await Product.findById(id).populate("categoryID");
     if (product) {
       res.status(200).json(product);
     } else {
@@ -106,16 +114,14 @@ export const getProductById = (req, res, next) => {
   }
 };
 
-export const deleteProduct = (req, res, next) => {
+export const deleteProduct = async(req, res, next) => {
   try {
     const id = req.params.id;
-    const index = products.findIndex((product) => product.id === id);
-    if (index > -1) {
-      products.pop(index);
-      res.status(200).send();
-    } else {
+    const product = Product.findByIdAndDelete(id);
+     if(!product) {
       throw new NotFoundError("Product not found");
     }
+    return res.status(204).send();
   } catch (error) {
     next(error);
   }
@@ -124,17 +130,11 @@ export const deleteProduct = (req, res, next) => {
 export const updateProduct = (req, res, next) => {
   try {
     const id = req.params.id;
-    const index = products.findIndex((product) => product.id === id);
-
-    if (index > -1) {
-      products[index] = {
-        ...products[index],
-        ...req.body,
-      };
-      res.status(200).send();
-    } else {
+    const product = Product.findByIdAndUpdate(id, req.body);
+    if (!product) {
       throw new NotFoundError("Product not found");
     }
+    res.status(204).send();
   } catch (error) {
     next(error);
   }
