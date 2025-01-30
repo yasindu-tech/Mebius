@@ -3,6 +3,7 @@ import ProductCards from "./ProductCards";
 import { Separator } from "@/components/ui/separator";
 import Tab from "./Tab";
 import Sort from "./Sort";
+import { Button } from "@/components/ui/button";
 
 function Products() {
   const products = [
@@ -117,11 +118,30 @@ function Products() {
     setSortOption(sortOption);
   };
 
+  const getProducts = async () =>{
+    try {
+      const res = await fetch("http://localhost:8000/api/products", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);      
+    }
+  };
+  
+
   return (
     <section className="px-8 py-8">
    
         <div className="flex justify-between items-center">
           <h2 className="text-4xl font-bold">Our Top Products</h2>
+          <div>
+            <Button onClick={() => getProducts()}>Get Products</Button>
+          </div>
           <Sort sortOption={sortOption} onSortOptionChange={sortProducts} />
         </div>
       
