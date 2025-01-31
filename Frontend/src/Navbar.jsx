@@ -15,7 +15,7 @@ export default function Navabr(props){
           <div className="flex items-center gap-4">
             <div>
               <a href="/cart" className="flex items-center gap-4 relative">
-                <p className="text-lg">{props.count}</p>
+                <p className="text-lg">{props.cartCount}</p>
                 <div className="flex items-center gap-2">
                     <img src={cart} alt="cart" className="w-6 h-6"/>
                   Cart

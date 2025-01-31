@@ -7,8 +7,10 @@ import globalErrorHandelingMiddleware from './api/middleware/global-error-handel
 import {categoryRouter} from './api/category.js';
 import { connectDB } from './db.js';
 import 'dotenv/config';
+import cors from "cors";
 
 app.use(express.json()); // For parsing JSON requests
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.use('/api/products', productRouter);
 app.use('/api/categories', categoryRouter);

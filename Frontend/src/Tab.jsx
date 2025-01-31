@@ -4,6 +4,7 @@ import React from 'react'
 const Tab = (props) => {
     const handleClick = (e) => {
         props.onTabClick(props._id)
+       
     }
     
     if(props._id === props.selectedCategoryId){

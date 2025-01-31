@@ -6,7 +6,13 @@ function ProductCard(props) {
   const [num, setNum] = useState(0);
 
   const handleClick = (e) => {
-    setNum(num + 1);
+    props.handleAddToCart({
+      _id:props._id,
+      name:props.name,
+      price:props.price,
+      image:props.image,
+      description:props.description,
+   })
   };
 
   return (
