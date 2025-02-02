@@ -7,8 +7,13 @@ import HomePage from "./pages/home.page.jsx";
 import SignInPage from "./pages/sign-in-page.jsx";
 import SignUpPage from "./pages/sign-up-page.jsx";
 
+import { store } from '@/lib/store.js'
+import { Provider } from 'react-redux'
+
+
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode>
+  <Provider store={store}>
     <BrowserRouter> 
       <Routes>
         <Route path="/" element={<HomePage  />} />
@@ -16,7 +21,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/signup" element={<SignUpPage/>} />
       </Routes>
     </BrowserRouter>
-    
-  </StrictMode>
+  </Provider>
+  // </StrictMode>
 );
  

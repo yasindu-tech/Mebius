@@ -1,4 +1,4 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart,Heart } from "lucide-react";
 
 function Navigation(props) {
   return (
@@ -13,6 +13,14 @@ function Navigation(props) {
         </div>
       </div>
       <div className="flex items-center gap-4">
+      <div>
+          <a href="/cart" className="flex items-center gap-4 relative">
+            <p className="text-lg">{props.savedCount}</p>
+            <div className="flex items-center gap-2">
+              <Heart></Heart>
+            </div>
+          </a>
+        </div>
         <div>
           <a href="/cart" className="flex items-center gap-4 relative">
             <p className="text-lg">{props.cartCount}</p>
