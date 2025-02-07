@@ -22,6 +22,6 @@ export const savedSlice = createSlice({
 })
 
 
-export const {toggleSave} = savedSlice.actions
+export const {toggleSave,deleteSavedItem} = savedSlice.actions
 
 export default savedSlice.reducer
